@@ -14,8 +14,11 @@ def initialize_conways():
     AI Critique: attempted to convert the neighbor matrix A to COO form, but the neighbor_matrix function already generates it in COO form. Thus, I eliminated that aspect.
     :return: X the grid matrix, x the vectorized grid, (values, col_index, row_ptr) the CSR form of the neighbor matrix A.
     """
+
+    # Assign X to be the matrix acquired from init.txt.
     X = matrix_operations.read_matrix("init.txt")
-    # Convert matrix to vectorized form
+
+    # Convert matrix to vectorized form, assign as x.
     x = matrix_operations.vectorize(X)
 
     # First, build the neighbor matrix A in COO format
@@ -42,6 +45,7 @@ def time_step(x, values, col_index, row_ptr):
     # Calculate neighbor counts using CSR matrix multiplication
     neighbor_counts = matrix_operations.matrix_multiply_csr(values, col_index, row_ptr, x)
 
+    # Construct new grid with appropriate size to fill later
     new_x = [0] * len(x)
 
     # Apply Conway's Game of Life rules
