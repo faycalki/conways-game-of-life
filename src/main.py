@@ -26,11 +26,11 @@ def main():
     X, x, (values, col_index, row_ptr) = conway_backend.initialize_conways()
 
     # Display initial state (Generation 0)
-    conway_frontend.display(X, generation=0, pause_time=0.5)
+    conway_frontend.display(X, generation=0, pause_time=2.0)
 
 
     # Run simulation for specified number of generations
-    for generation in range(1, generations):
+    for generation in range(1, generations + 1):
         # Update state using CSR matrix multiplication
         x = conway_backend.time_step(x, values, col_index, row_ptr)
 
@@ -38,7 +38,7 @@ def main():
         X = matrix_operations.matrixify(x)
 
         # Display current state
-        conway_frontend.display(X, generation=generation, pause_time=0.5)
+        conway_frontend.display(X, generation=generation, pause_time=2.0)
 
     # Save final state to output file
     conway_frontend.save_final_state(X)
