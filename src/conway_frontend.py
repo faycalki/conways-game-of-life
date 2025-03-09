@@ -65,6 +65,8 @@ def save_final_state(matrix, output_file="final_state.txt"):
     :param matrix: 2D matrix representing the final state
     :param output_file: Path to the output file
     """
+
+    # Open file 'final_state.txt' then write to it the final state matrix.
     with open(output_file, 'w') as f:
         for row in matrix:
             f.write(' '.join(map(str, row)) + '\n')
