@@ -19,43 +19,37 @@ def display(matrix, generation=0, pause_time=0.5):
     :param generation: Current generation number
     :param pause_time: Time in seconds to pause before next update
     """
-    # Clear previous plot
-    plt.clf()
+    plt.figure(figsize=(6,6))  # Set figure size explicitly
 
     # Create a custom colormap: 0 -> black, 1 -> yellow
     cmap = mcolors.ListedColormap(['black', 'yellow'])
 
-    # Create a figure with a grid
-    plt.imshow(matrix, cmap=cmap, interpolation='none')  # 'none' ensures sharp edges for cells
+    # Display the matrix
+    plt.imshow(matrix, cmap=cmap, interpolation='none')
+
+    # Set title
     plt.title(f"Conway's Game of Life - Generation {generation}", fontsize=12)
 
-    # Customize grid appearance
+    # Configure grid
     ax = plt.gca()
+    ax.set_xticks([x - 0.5 for x in range(len(matrix[0]) + 1)], minor=False)
+    ax.set_yticks([y - 0.5 for y in range(len(matrix) + 1)], minor=False)
+    ax.grid(True, color='white', linestyle='-', linewidth=1)
 
-    # Set grid lines to align with cell edges
-    ax.set_xticks([x - 0.5 for x in range(len(matrix[0]) + 1)], minor=False)  # Major ticks at cell boundaries
-    ax.set_yticks([y - 0.5 for y in range(len(matrix) + 1)], minor=False)    # Major ticks at cell boundaries
-    ax.grid(True, color='white', linestyle='-', linewidth=1)  # White grid lines for contrast
-
-    # Remove tick marks and labels
+    # Hide tick labels
     ax.set_xticklabels([])
     ax.set_yticklabels([])
-    ax.tick_params(axis='both', which='both', length=0)  # Hide tick marks
+    ax.tick_params(axis='both', which='both', length=0)
 
-    # Ensure cells are square-shaped
-    ax.set_aspect('equal')
+    # Save the figure before showing
+    filename = f"generation_{generation}.png"
+    plt.savefig(filename, bbox_inches='tight', pad_inches=0.1)
+    print(f"Saved {filename}")
 
-    # Remove padding around the plot
-    plt.tight_layout()
-
-    # Draw the updated grid
+    # Show the plot
     plt.draw()
     plt.pause(pause_time)
-
-    # Save the figure
-    filename = f"generation_{generation}.png"
-    plt.savefig(filename, bbox_inches='tight', pad_inches=0.1)  # Minimize padding in saved figure
-    print(f"Saved {filename}")
+    plt.close()  # Close figure to prevent overlap
 
 def save_final_state(matrix, output_file="final_state.txt"):
     """
