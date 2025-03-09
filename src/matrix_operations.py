@@ -2,7 +2,7 @@
 Author: Faycal Kilali
 Project: Conway's Game of Life
 Version: 1.0
-Citation: ChatGPT (OpenAI, 2025) and Claude.AI (Anthropic, 2025) for Neighbor_Matrix and matrix_multiply_CSR functions.
+Citation: ChatGPT (OpenAI, 2025) and Claude.AI (Anthropic, 2025) for Neighbor_Matrix.
 """
 
 MATRIX_ROWS = 0
