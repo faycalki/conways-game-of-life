@@ -14,8 +14,11 @@ def read_matrix(file):
     :param file: Path to the input file containing the matrix with space-separated values.
     :return: A 2D list representing the matrix.
     """
+
+    # Use global variables
     global MATRIX_ROWS, MATRIX_COLS
 
+    # Open and reade file passed as parameter. Ignore all white space then construct a 2D array from it.
     with open(file, 'r') as f:
         matrix = [list(map(int, line.split())) for line in f if line.strip()]
 
@@ -30,7 +33,7 @@ def matrixify(array):
     """
     matrix = [[0 for _ in range(MATRIX_COLS)] for _ in range(MATRIX_ROWS)] # Construct 2D matrix
 
-    # Construct matrix from vectorized form to matrix form
+    # Convert from vectorized form to matrix form
     row = 0
     for col in range (0, len(array)):
         curr_element = array[col]
@@ -50,8 +53,11 @@ def vectorize(matrix):
     :param matrix: the matrix to be vectorized
     :return:  the vectorized matrix
     """
+
+    # Construct vector with appropriate size
     vectorized = [0] * (MATRIX_COLS * MATRIX_ROWS)
 
+    # For each row and column in the matrix, vectorize in row-major order.
     curr_index = 0
     for row in range (0, len(matrix)):
         for col in range (0, len(matrix[0])):
@@ -176,6 +182,8 @@ def matrix_multiply_csr(values, col_index, row_ptr, x):
                 print(f"  Warning: Column {col} exceeds input vector length {len(x)}")
                 continue
 
+
+            # Construct the product vector element-by-element
             result[i] += values[j] * x[col]
 
     return result
