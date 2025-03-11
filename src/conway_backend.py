@@ -1,7 +1,7 @@
 """
 Author: Faycal Kilali
 Project: Conway's Game of Life
-Citation: ChatGPT (OpenAI, 2025) for assistance with time_step function
+Citation: ChatGPT (OpenAI, 2025) for assistance with time_step function and initialize_conway function.
 Version: 1.0
 """
 

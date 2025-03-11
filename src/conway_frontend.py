@@ -1,6 +1,6 @@
 """
 Author: Faycal Kilali
-Citation: Claude.AI (Anthropic, @025)
+Citation: Claude.AI (Anthropic, @025) for assistance with display and save_finaL_state functions.
 Project: Conway's Game of Life
 Version: 1.0
 """

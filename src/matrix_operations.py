@@ -2,7 +2,7 @@
 Author: Faycal Kilali
 Project: Conway's Game of Life
 Version: 1.0
-Citation: ChatGPT (OpenAI, 2025) and Claude.AI (Anthropic, 2025) for Neighbor_Matrix.
+Citation: ChatGPT (OpenAI, 2025) and Claude.AI (Anthropic, 2025) for build_neighbour_matrix and matrix_multiply_csr functions.
 """
 
 MATRIX_ROWS = 0
@@ -105,6 +105,7 @@ def compressed_sparse_row_format(rows, cols, data):
 def build_neighbor_matrix(matrix):
     """
     Builds a matrix representing the number of neighbors for each cell in Conway's Game of Life.
+    AI Critique: no issues found, works directly.
 
     :param matrix: 2D matrix representing the current state of the game (1 for alive, 0 for dead)
     :return: rows, cols, data lists representing the neighbor matrix in COO format
@@ -152,6 +153,7 @@ def build_neighbor_matrix(matrix):
 def matrix_multiply_csr(values, col_index, row_ptr, x):
     """
     Performs matrix-vector multiplication using CSR format.
+    AI Critique: no issues found, works directly.
 
     :param values: array of non-zero values
     :param col_index: array of column indices

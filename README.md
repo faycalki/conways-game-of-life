@@ -11,6 +11,30 @@ This project implements Conway's Game of Life using matrix-vector operations and
 - **Visualization:** Uses matplotlib to display each generation with a brief pause between updates.
 - **Output:** Saves the final state to `final_state.txt`.
 
+
+## Conway's Game of Life: Code to Mathematical Concept Mapping
+
+|Mathematical Concept|Code Implementation|Variable Mapping|Constraints & Notes|
+|---|---|---|---|
+|Grid representation (X)|`read_matrix()` in matrix_operations.py|X = 2D matrix from init.txt|Each cell contains 0 (dead) or 1 (alive)|
+|Vectorized grid (x)|`vectorize()` and `matrixify()` in matrix_operations.py|x = flattened version of X in row-major order|Length must be MATRIX_ROWS × MATRIX_COLS|
+|Neighbor counting matrix (A)|`build_neighbor_matrix()` in matrix_operations.py|Returns (rows, cols, data) in COO format|Each cell has up to 8 neighbors|
+|Sparse matrix storage|`compressed_sparse_row_format()` in matrix_operations.py|(values, col_index, row_ptr) = CSR representation|Efficient for sparse matrices|
+|Matrix-vector multiplication (y = Ax)|`matrix_multiply_csr()` in matrix_operations.py|neighbor_counts = multiplication result|Calculates live neighbors for each cell|
+|State transition rules|`time_step()` in conway_backend.py|Implements all 4 GoL rules|Cell state depends on neighbor count and current state|
+|Iteration counter (k)|`generation` in main()|Tracks current generation number|Runs for a predefined number of generations|
+|Initializing simulation|`initialize_conways()` in conway_backend.py|Sets up X, x, and A matrix|Starting point for the simulation|
+|Converting between representations|`matrixify()` in matrix_operations.py|Converts vector back to matrix for display|Used after each time step|
+|Algorithm step 1|`build_neighbor_matrix()` in matrix_operations.py|Creates matrix A for counting neighbors|Follows PDF's COO matrix construction approach|
+|Algorithm steps 2-3|`initialize_conways()` in conway_backend.py|Initializes X^(0) and x^(0)|Reads initial state from file|
+|Algorithm step 4|`matrix_multiply_csr()` in matrix_operations.py|y^(k) = Ax^(k)|Calculates neighbor counts vector|
+|Algorithm step 5|`time_step()` in conway_backend.py|x^(k) becomes x^(k+1)|Applies the four GoL rules|
+|Algorithm step 6|`matrixify()` and `display()`|Reshapes x^(k+1) to X^(k+1) and plots|Visual representation of current state|
+|Algorithm step 7|Loop in `main()`|Increments generation counter|Continues simulation process|
+|Game of Life rules|`time_step()` in conway_backend.py|If-else conditions based on cell state and neighbor count|Implements all four rules from the PDF|
+
+Where the mappings corresponds to the variables provided in the GoL document provided by Dr. Lelievre.
+
 ## Requirements
 
 - Python 3.x
